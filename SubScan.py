@@ -77,6 +77,12 @@ try:
     print(f"{red}No Found: {len(not_working_subdomains)}")
     print("="*30)
 
+    # Save the working subdomains (Found) to a file
+    with open("found.txt", "w") as f:
+        for subdomain in working_subdomains:
+            f.write(subdomain + "\n")
+    print(f"{green}Found subdomains have been saved to 'found.txt'.")
+
 except KeyboardInterrupt:
     # Handling forced exit
     print(f"\n{yellow}Operation was interrupted. Exiting gracefully...{reset}")
