@@ -62,26 +62,26 @@ try:
         try:
             response = requests.get(f"http://{subdomain}", timeout=5)
             if response.status_code == 200:
-                print(f"{green}{subdomain} - Found")
+                print(f"{green}[+] {subdomain} - Found")
                 working_subdomains.append(subdomain)
             else:
-                print(f"{red}{subdomain} - No Found")
+                print(f"{red}[-] {subdomain} - Not Found")
                 not_working_subdomains.append(subdomain)
         except requests.exceptions.RequestException:
-            print(f"{red}{subdomain} - No Found")
+            print(f"{red}[-] {subdomain} - Not Found")
             not_working_subdomains.append(subdomain)
 
     # Display final statistics
     print("\n" + "="*30)
-    print(f"{green}Found: {len(working_subdomains)}")
-    print(f"{red}No Found: {len(not_working_subdomains)}")
+    print(f"{green}[+] Found: {len(working_subdomains)}")
+    print(f"{red}[-] Not Found: {len(not_working_subdomains)}")
     print("="*30)
 
     # Save the working subdomains (Found) to a file
     with open("found.txt", "w") as f:
         for subdomain in working_subdomains:
             f.write(subdomain + "\n")
-    print(f"{green}Found subdomains have been saved to 'found.txt'.")
+    print(f"{green}[+] Found subdomains have been saved to 'found.txt'.")
 
 except KeyboardInterrupt:
     # Handling forced exit
